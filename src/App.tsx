@@ -821,7 +821,7 @@ function App() {
               )}
             </article>
 
-            <section className="mt-6 grid gap-6 xl:grid-cols-[0.8fr_1.2fr]">
+            <section className="mt-6 grid gap-6 xl:grid-cols-[0.8fr_1.2fr] xl:items-start">
               <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-slate-900">
                 <div className="flex items-center justify-between gap-4">
                   <div>
@@ -949,7 +949,7 @@ function App() {
               </article>
 
               <article
-                className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-slate-900"
+                className="h-fit rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-slate-900"
                 id="budget"
               >
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
