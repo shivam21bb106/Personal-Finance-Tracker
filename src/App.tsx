@@ -554,49 +554,6 @@ function App() {
               </p>
             </div>
 
-            <div className="mt-4 rounded-lg border border-emerald-900/10 bg-white/55 p-4 shadow-sm backdrop-blur dark:border-teal-300/15 dark:bg-black/30">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-sm font-semibold dark:text-teal-50">
-                  Monthly pulse
-                </p>
-                <span className="rounded-full bg-teal-100 px-2 py-1 text-xs font-bold text-teal-800 dark:bg-teal-300/15 dark:text-teal-100">
-                  {budgetProgress}%
-                </span>
-              </div>
-              <div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10">
-                <div
-                  className="h-full rounded-full bg-gradient-to-r from-teal-300 to-lime-300"
-                  style={{ width: `${budgetProgress}%` }}
-                />
-              </div>
-              <div className="mt-4 grid gap-3 text-sm">
-                <div className="flex items-center justify-between">
-                  <span className="text-slate-500 dark:text-zinc-400">
-                    Spent
-                  </span>
-                  <span className="font-semibold dark:text-zinc-100">
-                    {formatCurrency(currentMonthExpense)}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-slate-500 dark:text-zinc-400">
-                    Remaining
-                  </span>
-                  <span className="font-semibold text-teal-700 dark:text-teal-100">
-                    {formatCurrency(budgetRemaining)}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-slate-500 dark:text-zinc-400">
-                    Records
-                  </span>
-                  <span className="font-semibold dark:text-zinc-100">
-                    {transactions.length}
-                  </span>
-                </div>
-              </div>
-            </div>
-
             <div className="mt-auto pt-4">
               <div className="rounded-lg border border-teal-300/10 bg-gradient-to-br from-teal-300/10 to-lime-300/5 p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-200">
@@ -977,58 +934,105 @@ function App() {
                   </label>
                 </div>
 
-                <div className="mt-8">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="font-medium text-slate-600 dark:text-zinc-300">
-                      Budget progress
-                    </span>
-                    <span className="font-semibold">{budgetProgress}%</span>
-                  </div>
-                  <div className="mt-3 h-3 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
-                    <div
-                      className={`h-full rounded-full transition-all ${
-                        budgetProgress > 90
-                          ? 'bg-red-500'
-                          : budgetProgress > 70
-                            ? 'bg-orange-500'
-                            : 'bg-teal-300'
-                      }`}
-                      style={{ width: `${budgetProgress}%` }}
-                    />
-                  </div>
-                  <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                    <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-black/35">
-                      <p className="text-sm text-slate-500 dark:text-zinc-400">
-                        Remaining
-                      </p>
-                      <p className="mt-1 text-lg font-semibold">
-                        {formatCurrency(budgetRemaining)}
-                      </p>
+                <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_0.72fr]">
+                  <div>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="font-medium text-slate-600 dark:text-zinc-300">
+                        Budget progress
+                      </span>
+                      <span className="font-semibold">{budgetProgress}%</span>
                     </div>
-                    <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-black/35">
-                      <p className="text-sm text-slate-500 dark:text-zinc-400">
-                        Avg. transaction
-                      </p>
-                      <p className="mt-1 text-lg font-semibold">
-                        {formatCurrency(
-                          transactions.length
-                            ? (totals.income + totals.expenses) /
-                                transactions.length
-                            : 0,
-                        )}
-                      </p>
+                    <div className="mt-3 h-3 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+                      <div
+                        className={`h-full rounded-full transition-all ${
+                          budgetProgress > 90
+                            ? 'bg-red-500'
+                            : budgetProgress > 70
+                              ? 'bg-orange-500'
+                              : 'bg-teal-300'
+                        }`}
+                        style={{ width: `${budgetProgress}%` }}
+                      />
                     </div>
-                    <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-black/35">
-                      <p className="text-sm text-slate-500 dark:text-zinc-400">
-                        Status
+                    <div className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 2xl:grid-cols-3">
+                      <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-black/35">
+                        <p className="text-sm text-slate-500 dark:text-zinc-400">
+                          Remaining
+                        </p>
+                        <p className="mt-1 text-lg font-semibold">
+                          {formatCurrency(budgetRemaining)}
+                        </p>
+                      </div>
+                      <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-black/35">
+                        <p className="text-sm text-slate-500 dark:text-zinc-400">
+                          Avg. transaction
+                        </p>
+                        <p className="mt-1 text-lg font-semibold">
+                          {formatCurrency(
+                            transactions.length
+                              ? (totals.income + totals.expenses) /
+                                  transactions.length
+                              : 0,
+                          )}
+                        </p>
+                      </div>
+                      <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-black/35">
+                        <p className="text-sm text-slate-500 dark:text-zinc-400">
+                          Status
+                        </p>
+                        <p className="mt-1 text-lg font-semibold">
+                          {budgetProgress > 90
+                            ? 'Tight'
+                            : budgetProgress > 70
+                              ? 'Watch'
+                              : 'Healthy'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="rounded-lg border border-emerald-900/10 bg-emerald-50/60 p-4 dark:border-teal-300/15 dark:bg-black/35">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-sm font-semibold dark:text-teal-50">
+                        Monthly pulse
                       </p>
-                      <p className="mt-1 text-lg font-semibold">
-                        {budgetProgress > 90
-                          ? 'Tight'
-                          : budgetProgress > 70
-                            ? 'Watch'
-                            : 'Healthy'}
-                      </p>
+                      <span className="rounded-full bg-teal-100 px-2 py-1 text-xs font-bold text-teal-800 dark:bg-teal-300/15 dark:text-teal-100">
+                        {budgetProgress}%
+                      </span>
+                    </div>
+                    <div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-teal-300 to-lime-300"
+                        style={{ width: `${budgetProgress}%` }}
+                      />
+                    </div>
+                    <div className="mt-5 grid gap-4 text-sm">
+                      <div>
+                        <p className="text-slate-500 dark:text-zinc-400">
+                          Spent this month
+                        </p>
+                        <p className="mt-1 text-xl font-semibold dark:text-zinc-100">
+                          {formatCurrency(currentMonthExpense)}
+                        </p>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="rounded-lg bg-white/55 p-3 dark:bg-white/[0.04]">
+                          <p className="text-slate-500 dark:text-zinc-400">
+                            Remaining
+                          </p>
+                          <p className="mt-1 font-semibold text-teal-700 dark:text-teal-100">
+                            {formatCurrency(budgetRemaining)}
+                          </p>
+                        </div>
+                        <div className="rounded-lg bg-white/55 p-3 dark:bg-white/[0.04]">
+                          <p className="text-slate-500 dark:text-zinc-400">
+                            Records
+                          </p>
+                          <p className="mt-1 font-semibold dark:text-zinc-100">
+                            {transactions.length}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
