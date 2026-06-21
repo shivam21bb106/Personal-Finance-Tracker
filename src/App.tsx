@@ -65,7 +65,7 @@ const STORAGE_KEYS = {
   settings: 'moneymate.settings',
 }
 
-const DESIGN_VERSION = 'dark-gen-3'
+const DESIGN_VERSION = 'dark-gen-4'
 
 const incomeCategories = [
   'Client Work',
@@ -496,7 +496,7 @@ function App() {
     <main className={theme === 'dark' ? 'dark' : ''}>
       <div className="app-canvas min-h-screen text-slate-950 transition-colors dark:text-white">
         <div className="flex min-h-screen">
-          <aside className="sidebar-shell sticky top-0 hidden h-screen w-72 shrink-0 border-r border-emerald-900/10 p-6 backdrop-blur lg:block dark:border-teal-300/10">
+          <aside className="sidebar-shell sticky top-0 hidden h-screen w-72 shrink-0 flex-col border-r border-emerald-900/10 p-6 backdrop-blur lg:flex dark:border-teal-300/10">
             <div className="flex items-center gap-3">
               <div className="grid size-11 place-items-center rounded-lg bg-gradient-to-br from-teal-400 via-cyan-400 to-blue-500 text-zinc-950 shadow-lg shadow-teal-400/20">
                 <Wallet size={22} />
@@ -542,6 +542,60 @@ function App() {
                 Local-first finance dashboard with real interactions, charts,
                 and persistent settings.
               </p>
+            </div>
+
+            <div className="mt-4 rounded-lg border border-emerald-900/10 bg-white/55 p-4 shadow-sm backdrop-blur dark:border-teal-300/15 dark:bg-black/30">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-sm font-semibold dark:text-teal-50">
+                  Monthly pulse
+                </p>
+                <span className="rounded-full bg-teal-100 px-2 py-1 text-xs font-bold text-teal-800 dark:bg-teal-300/15 dark:text-teal-100">
+                  {budgetProgress}%
+                </span>
+              </div>
+              <div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-teal-300 to-lime-300"
+                  style={{ width: `${budgetProgress}%` }}
+                />
+              </div>
+              <div className="mt-4 grid gap-3 text-sm">
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-500 dark:text-zinc-400">
+                    Spent
+                  </span>
+                  <span className="font-semibold dark:text-zinc-100">
+                    {formatCurrency(currentMonthExpense)}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-500 dark:text-zinc-400">
+                    Remaining
+                  </span>
+                  <span className="font-semibold text-teal-700 dark:text-teal-100">
+                    {formatCurrency(budgetRemaining)}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-500 dark:text-zinc-400">
+                    Records
+                  </span>
+                  <span className="font-semibold dark:text-zinc-100">
+                    {transactions.length}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-auto pt-4">
+              <div className="rounded-lg border border-teal-300/10 bg-gradient-to-br from-teal-300/10 to-lime-300/5 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-200">
+                  Local storage
+                </p>
+                <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-zinc-400">
+                  No backend. No database. Your transactions stay on this device.
+                </p>
+              </div>
             </div>
           </aside>
 
@@ -1036,16 +1090,18 @@ function App() {
                 <p className="text-sm text-slate-500 dark:text-zinc-400">
                   Where money is going
                 </p>
-                <div className="mt-6 grid gap-5 md:grid-cols-[1fr_0.8fr] 2xl:grid-cols-1">
-                  <div className="h-64">
+                <div className="mt-6 grid items-center gap-6 lg:grid-cols-[1.05fr_0.95fr] 2xl:grid-cols-1">
+                  <div className="relative mx-auto h-80 w-full max-w-md">
                     <ResponsiveContainer height="100%" width="100%">
                       <PieChart>
                         <Pie
                           data={categoryChart}
                           dataKey="value"
-                          innerRadius={58}
-                          outerRadius={92}
+                          innerRadius={82}
+                          outerRadius={124}
                           paddingAngle={4}
+                          stroke="rgba(5, 6, 5, 0.9)"
+                          strokeWidth={3}
                         >
                           {categoryChart.map((entry) => (
                             <Cell fill={entry.color} key={entry.name} />
@@ -1054,11 +1110,21 @@ function App() {
                         <Tooltip formatter={(value) => formatCurrency(Number(value))} />
                       </PieChart>
                     </ResponsiveContainer>
+                    <div className="pointer-events-none absolute inset-0 grid place-items-center">
+                      <div className="text-center">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-zinc-500">
+                          Total
+                        </p>
+                        <p className="font-['Space_Grotesk'] text-2xl font-bold text-slate-950 dark:text-zinc-50">
+                          {formatCurrency(totals.expenses)}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-3 lg:pl-2">
                     {categoryChart.slice(0, 5).map((category) => (
                       <div
-                        className="flex items-center justify-between gap-3 text-sm"
+                        className="flex items-center justify-between gap-4 rounded-lg border border-transparent px-3 py-2 text-sm transition dark:hover:border-teal-300/10 dark:hover:bg-teal-300/5"
                         key={category.name}
                       >
                         <span className="flex min-w-0 items-center gap-2 text-slate-600 dark:text-zinc-300">
