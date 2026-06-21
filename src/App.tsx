@@ -265,7 +265,7 @@ const StatCard = ({
   tone: 'blue' | 'green' | 'orange' | 'teal'
 }) => {
   const toneClasses = {
-    blue: 'bg-blue-50 text-blue-700 ring-blue-100 dark:bg-blue-500/12 dark:text-blue-300 dark:ring-blue-400/20',
+    blue: 'bg-teal-50 text-teal-800 ring-teal-100 dark:bg-teal-500/12 dark:text-teal-200 dark:ring-teal-400/20',
     green:
       'bg-emerald-50 text-emerald-700 ring-emerald-100 dark:bg-emerald-500/12 dark:text-emerald-300 dark:ring-emerald-400/20',
     orange:
@@ -479,11 +479,11 @@ function App() {
 
   return (
     <main className={theme === 'dark' ? 'dark' : ''}>
-      <div className="min-h-screen bg-[#f5f7fb] text-slate-950 transition-colors dark:bg-[#0b1120] dark:text-white">
+      <div className="app-canvas min-h-screen text-slate-950 transition-colors dark:text-white">
         <div className="flex min-h-screen">
-          <aside className="sticky top-0 hidden h-screen w-72 shrink-0 border-r border-slate-200 bg-white/95 p-6 shadow-sm backdrop-blur lg:block dark:border-white/10 dark:bg-slate-950/90">
+          <aside className="sidebar-shell sticky top-0 hidden h-screen w-72 shrink-0 border-r border-emerald-900/10 p-6 backdrop-blur lg:block dark:border-white/10">
             <div className="flex items-center gap-3">
-              <div className="grid size-11 place-items-center rounded-lg bg-blue-600 text-white shadow-lg shadow-blue-600/20">
+              <div className="grid size-11 place-items-center rounded-lg bg-gradient-to-br from-teal-600 to-blue-600 text-white shadow-lg shadow-teal-700/20">
                 <Wallet size={22} />
               </div>
               <div>
@@ -505,8 +505,8 @@ function App() {
                 <a
                   className={`flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition ${
                     index === 0
-                      ? 'bg-blue-50 text-blue-700 dark:bg-blue-500/15 dark:text-blue-200'
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white'
+                      ? 'bg-teal-50 text-teal-800 shadow-sm dark:bg-teal-500/15 dark:text-teal-100'
+                      : 'text-slate-600 hover:bg-teal-50/80 hover:text-teal-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white'
                   }`}
                   href={`#${String(label).toLowerCase()}`}
                   key={label as string}
@@ -517,7 +517,7 @@ function App() {
               ))}
             </nav>
 
-            <div className="mt-10 rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/5">
+            <div className="mt-10 rounded-lg border border-emerald-900/10 bg-white/55 p-4 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
               <p className="text-sm font-semibold">Portfolio ready</p>
               <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">
                 Local-first finance dashboard with real interactions, charts,
@@ -527,23 +527,23 @@ function App() {
           </aside>
 
           <section className="min-w-0 flex-1 p-4 sm:p-6 lg:p-8">
-            <header className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
+            <header className="hero-panel flex flex-col gap-5 p-5 sm:p-6 xl:flex-row xl:items-center xl:justify-between">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700 dark:border-blue-400/20 dark:bg-blue-500/10 dark:text-blue-200">
+                <div className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-sm font-semibold text-teal-800 dark:border-teal-400/20 dark:bg-teal-500/10 dark:text-teal-100">
                   <BriefcaseBusiness size={15} />
                   Personal finance command center
                 </div>
-                <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+                <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
                   MoneyMate dashboard
                 </h1>
-                <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-500 sm:text-base dark:text-slate-400">
+                <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base dark:text-slate-300">
                   Track freelance income, expenses, budget health, and spending
                   patterns without a backend or paid APIs.
                 </p>
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <label className="flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-500 shadow-sm sm:w-80 dark:border-white/10 dark:bg-slate-900 dark:text-slate-400">
+                <label className="glass-control flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-white/70 px-3 py-2.5 text-sm text-slate-500 sm:w-80 dark:border-white/10 dark:text-slate-300">
                   <Search size={17} />
                   <input
                     className="w-full bg-transparent text-slate-900 outline-none placeholder:text-slate-400 dark:text-white"
@@ -555,7 +555,7 @@ function App() {
                 </label>
                 <button
                   aria-label="Toggle dark mode"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-white/10 dark:bg-slate-900 dark:text-white dark:hover:bg-white/10"
+                  className="glass-control inline-flex items-center justify-center gap-2 rounded-lg border border-white/70 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 dark:border-white/10 dark:text-white"
                   onClick={() =>
                     setTheme((current) =>
                       current === 'dark' ? 'light' : 'dark',
@@ -572,7 +572,7 @@ function App() {
             <div className="mt-6 grid grid-cols-2 gap-2 lg:hidden">
               {['Dashboard', 'Transactions', 'Insights', 'Budget'].map((item) => (
                 <a
-                  className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-center text-sm font-medium text-slate-600 shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-slate-300"
+                  className="glass-control rounded-lg border border-white/70 px-3 py-2 text-center text-sm font-semibold text-slate-700 dark:border-white/10 dark:text-slate-200"
                   href={`#${item.toLowerCase()}`}
                   key={item}
                 >
@@ -630,7 +630,7 @@ function App() {
                   </div>
                   <div className="flex flex-col gap-3 sm:flex-row">
                     <select
-                      className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none dark:border-white/10 dark:bg-slate-950"
+                      className="rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2 text-sm outline-none dark:border-white/10 dark:bg-slate-950/80"
                       onChange={(event) =>
                         setTypeFilter(
                           event.target.value as 'all' | TransactionType,
@@ -643,7 +643,7 @@ function App() {
                       <option value="expense">Expense</option>
                     </select>
                     <select
-                      className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none dark:border-white/10 dark:bg-slate-950"
+                      className="rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2 text-sm outline-none dark:border-white/10 dark:bg-slate-950/80"
                       onChange={(event) => setCategoryFilter(event.target.value)}
                       value={categoryFilter}
                     >
@@ -745,7 +745,7 @@ function App() {
                       Saved instantly to localStorage
                     </p>
                   </div>
-                  <div className="grid size-10 place-items-center rounded-lg bg-blue-50 text-blue-700 dark:bg-blue-500/15 dark:text-blue-200">
+                  <div className="grid size-10 place-items-center rounded-lg bg-teal-50 text-teal-800 dark:bg-teal-500/15 dark:text-teal-100">
                     <Plus size={19} />
                   </div>
                 </div>
@@ -756,7 +756,7 @@ function App() {
                       Title
                     </label>
                     <input
-                      className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-white/10 dark:bg-slate-950"
+                      className="mt-2 w-full rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2.5 text-sm outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 dark:border-white/10 dark:bg-slate-950/80"
                       onChange={(event) =>
                         setForm((current) => ({
                           ...current,
@@ -774,7 +774,7 @@ function App() {
                         Amount
                       </label>
                       <input
-                        className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-white/10 dark:bg-slate-950"
+                        className="mt-2 w-full rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2.5 text-sm outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 dark:border-white/10 dark:bg-slate-950/80"
                         min="0"
                         onChange={(event) =>
                           setForm((current) => ({
@@ -793,7 +793,7 @@ function App() {
                         Date
                       </label>
                       <input
-                        className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-white/10 dark:bg-slate-950"
+                        className="mt-2 w-full rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2.5 text-sm outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 dark:border-white/10 dark:bg-slate-950/80"
                         onChange={(event) =>
                           setForm((current) => ({
                             ...current,
@@ -811,13 +811,13 @@ function App() {
                       <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
                         Type
                       </label>
-                      <div className="mt-2 grid grid-cols-2 rounded-lg border border-slate-200 bg-slate-50 p-1 dark:border-white/10 dark:bg-slate-950">
+                      <div className="mt-2 grid grid-cols-2 rounded-lg border border-emerald-900/10 bg-emerald-50/60 p-1 dark:border-white/10 dark:bg-slate-950/80">
                         {(['expense', 'income'] as TransactionType[]).map(
                           (type) => (
                             <button
                               className={`rounded-md px-3 py-2 text-sm font-semibold capitalize transition ${
                                 form.type === type
-                                  ? 'bg-white text-blue-700 shadow-sm dark:bg-slate-800 dark:text-blue-200'
+                                  ? 'bg-white text-teal-800 shadow-sm dark:bg-slate-800 dark:text-teal-100'
                                   : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
                               }`}
                               key={type}
@@ -835,7 +835,7 @@ function App() {
                         Category
                       </label>
                       <select
-                        className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-white/10 dark:bg-slate-950"
+                        className="mt-2 w-full rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2.5 text-sm outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 dark:border-white/10 dark:bg-slate-950/80"
                         onChange={(event) =>
                           setForm((current) => ({
                             ...current,
@@ -852,7 +852,7 @@ function App() {
                   </div>
 
                   <button
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-teal-600 to-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-teal-700/20 transition hover:-translate-y-0.5 hover:shadow-xl"
                     type="submit"
                   >
                     <Plus size={17} />
@@ -873,7 +873,7 @@ function App() {
                       {formatCurrency(monthlyBudget)} used this month
                     </p>
                   </div>
-                  <label className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-600 dark:border-white/10 dark:bg-slate-950 dark:text-slate-300">
+                  <label className="flex items-center gap-2 rounded-lg border border-emerald-900/10 bg-emerald-50/60 px-3 py-2 text-sm font-medium text-slate-700 dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-300">
                     Budget
                     <input
                       className="w-24 bg-transparent text-right font-semibold text-slate-950 outline-none dark:text-white"
@@ -902,13 +902,13 @@ function App() {
                           ? 'bg-red-500'
                           : budgetProgress > 70
                             ? 'bg-orange-500'
-                            : 'bg-blue-600'
+                            : 'bg-teal-600'
                       }`}
                       style={{ width: `${budgetProgress}%` }}
                     />
                   </div>
                   <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                    <div className="rounded-lg bg-slate-50 p-4 dark:bg-slate-950">
+                    <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-slate-950/80">
                       <p className="text-sm text-slate-500 dark:text-slate-400">
                         Remaining
                       </p>
@@ -916,7 +916,7 @@ function App() {
                         {formatCurrency(budgetRemaining)}
                       </p>
                     </div>
-                    <div className="rounded-lg bg-slate-50 p-4 dark:bg-slate-950">
+                    <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-slate-950/80">
                       <p className="text-sm text-slate-500 dark:text-slate-400">
                         Avg. transaction
                       </p>
@@ -929,7 +929,7 @@ function App() {
                         )}
                       </p>
                     </div>
-                    <div className="rounded-lg bg-slate-50 p-4 dark:bg-slate-950">
+                    <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-slate-950/80">
                       <p className="text-sm text-slate-500 dark:text-slate-400">
                         Status
                       </p>
@@ -958,7 +958,7 @@ function App() {
                       Last six active months
                     </p>
                   </div>
-                  <BarChart3 className="text-blue-600 dark:text-blue-300" />
+                  <BarChart3 className="text-teal-700 dark:text-teal-200" />
                 </div>
                 <div className="mt-6 h-72">
                   <ResponsiveContainer height="100%" width="100%">
@@ -1096,7 +1096,7 @@ function App() {
             <footer className="mt-8 flex flex-col gap-3 border-t border-slate-200 py-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between dark:border-white/10 dark:text-slate-400">
               <p>MoneyMate saves transactions and settings locally in your browser.</p>
               <button
-                className="inline-flex w-fit items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-white/10 dark:bg-slate-900 dark:text-white dark:hover:bg-white/10"
+                className="glass-control inline-flex w-fit items-center gap-2 rounded-lg border border-white/70 px-3 py-2 font-semibold text-slate-700 transition hover:-translate-y-0.5 dark:border-white/10 dark:text-white"
                 onClick={resetDemoData}
                 type="button"
               >
