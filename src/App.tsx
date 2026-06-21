@@ -505,8 +505,8 @@ function App() {
   return (
     <main className={theme === 'dark' ? 'dark' : ''}>
       <div className="app-canvas min-h-screen text-slate-950 transition-colors dark:text-white">
-        <div className="flex min-h-screen">
-          <aside className="sidebar-shell sticky top-0 hidden h-screen w-72 shrink-0 flex-col border-r border-emerald-900/10 p-6 backdrop-blur lg:flex dark:border-teal-300/10">
+        <div className="min-h-screen">
+          <aside className="sidebar-shell fixed inset-y-0 left-0 z-20 hidden h-screen w-72 flex-col overflow-y-auto border-r border-emerald-900/10 p-6 backdrop-blur lg:flex dark:border-teal-300/10">
             <div className="flex items-center gap-3">
               <div className="grid size-11 place-items-center rounded-lg bg-gradient-to-br from-teal-400 via-cyan-400 to-blue-500 text-zinc-950 shadow-lg shadow-teal-400/20">
                 <Wallet size={22} />
@@ -609,7 +609,7 @@ function App() {
             </div>
           </aside>
 
-          <section className="min-w-0 flex-1 p-4 sm:p-6 lg:p-8">
+          <section className="min-w-0 p-4 sm:p-6 lg:ml-72 lg:p-8">
             <header className="hero-panel flex flex-col gap-6 p-5 sm:p-7 xl:flex-row xl:items-center xl:justify-between">
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-sm font-semibold text-teal-800 dark:border-teal-400/20 dark:bg-teal-500/10 dark:text-teal-100">
