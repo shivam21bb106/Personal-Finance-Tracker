@@ -65,7 +65,7 @@ const STORAGE_KEYS = {
   settings: 'moneymate.settings',
 }
 
-const DESIGN_VERSION = 'dark-gen-1'
+const DESIGN_VERSION = 'dark-gen-2'
 
 const incomeCategories = [
   'Client Work',
@@ -289,9 +289,9 @@ const StatCard = ({
   }
 
   return (
-    <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-white/10 dark:bg-slate-900">
+    <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-teal-300/15 dark:bg-zinc-950/80">
       <div className="flex items-center justify-between gap-3">
-        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
+        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-zinc-400">
           {label}
         </p>
         <div
@@ -300,10 +300,10 @@ const StatCard = ({
           <Icon size={19} />
         </div>
       </div>
-      <p className="mt-5 text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">
+      <p className="mt-5 font-['Space_Grotesk'] text-3xl font-bold tracking-tight text-slate-950 dark:text-zinc-50">
         {value}
       </p>
-      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{helper}</p>
+      <p className="mt-1 text-sm text-slate-500 dark:text-zinc-400">{helper}</p>
     </article>
   )
 }
@@ -496,14 +496,16 @@ function App() {
     <main className={theme === 'dark' ? 'dark' : ''}>
       <div className="app-canvas min-h-screen text-slate-950 transition-colors dark:text-white">
         <div className="flex min-h-screen">
-          <aside className="sidebar-shell sticky top-0 hidden h-screen w-72 shrink-0 border-r border-emerald-900/10 p-6 backdrop-blur lg:block dark:border-white/10">
+          <aside className="sidebar-shell sticky top-0 hidden h-screen w-72 shrink-0 border-r border-emerald-900/10 p-6 backdrop-blur lg:block dark:border-teal-300/10">
             <div className="flex items-center gap-3">
-              <div className="grid size-11 place-items-center rounded-lg bg-gradient-to-br from-teal-600 to-blue-600 text-white shadow-lg shadow-teal-700/20">
+              <div className="grid size-11 place-items-center rounded-lg bg-gradient-to-br from-teal-400 via-cyan-400 to-blue-500 text-zinc-950 shadow-lg shadow-teal-400/20">
                 <Wallet size={22} />
               </div>
               <div>
-                <p className="text-lg font-semibold">MoneyMate</p>
-                <p className="text-sm text-slate-500 dark:text-slate-400">
+                <p className="font-['Space_Grotesk'] text-lg font-bold tracking-tight">
+                  MoneyMate
+                </p>
+                <p className="text-sm text-slate-500 dark:text-zinc-400">
                   Freelancer finance
                 </p>
               </div>
@@ -532,9 +534,11 @@ function App() {
               ))}
             </nav>
 
-            <div className="mt-10 rounded-lg border border-emerald-900/10 bg-white/55 p-4 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
-              <p className="text-sm font-semibold">Portfolio ready</p>
-              <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">
+            <div className="mt-10 rounded-lg border border-emerald-900/10 bg-white/55 p-4 shadow-sm backdrop-blur dark:border-teal-300/15 dark:bg-teal-300/5">
+              <p className="text-sm font-semibold dark:text-teal-50">
+                Portfolio ready
+              </p>
+              <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-zinc-400">
                 Local-first finance dashboard with real interactions, charts,
                 and persistent settings.
               </p>
@@ -542,23 +546,23 @@ function App() {
           </aside>
 
           <section className="min-w-0 flex-1 p-4 sm:p-6 lg:p-8">
-            <header className="hero-panel flex flex-col gap-5 p-5 sm:p-6 xl:flex-row xl:items-center xl:justify-between">
+            <header className="hero-panel flex flex-col gap-6 p-5 sm:p-7 xl:flex-row xl:items-center xl:justify-between">
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-sm font-semibold text-teal-800 dark:border-teal-400/20 dark:bg-teal-500/10 dark:text-teal-100">
                   <BriefcaseBusiness size={15} />
                   Personal finance command center
                 </div>
-                <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
+                <h1 className="mt-5 max-w-xl font-['Space_Grotesk'] text-4xl font-bold leading-[0.95] tracking-tight text-slate-950 sm:text-6xl dark:text-zinc-50">
                   MoneyMate dashboard
                 </h1>
-                <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base dark:text-slate-300">
+                <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base dark:text-zinc-400">
                   Track freelance income, expenses, budget health, and spending
                   patterns without a backend or paid APIs.
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <label className="glass-control flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-white/70 px-3 py-2.5 text-sm text-slate-500 sm:w-80 dark:border-white/10 dark:text-slate-300">
+              <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center xl:w-auto">
+                <label className="glass-control flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-white/70 px-3 py-2.5 text-sm text-slate-500 sm:min-w-80 xl:w-80 dark:border-teal-300/20 dark:text-zinc-300">
                   <Search size={17} />
                   <input
                     className="w-full bg-transparent text-slate-900 outline-none placeholder:text-slate-400 dark:text-white"
@@ -570,7 +574,7 @@ function App() {
                 </label>
                 <button
                   aria-label="Toggle dark mode"
-                  className="glass-control inline-flex items-center justify-center gap-2 rounded-lg border border-white/70 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 dark:border-white/10 dark:text-white"
+                  className="glass-control inline-flex items-center justify-center gap-2 rounded-lg border border-white/70 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 dark:border-teal-300/20 dark:text-teal-50"
                   onClick={() =>
                     setTheme((current) =>
                       current === 'dark' ? 'light' : 'dark',
@@ -587,7 +591,7 @@ function App() {
             <div className="mt-6 grid grid-cols-2 gap-2 lg:hidden">
               {['Dashboard', 'Transactions', 'Insights', 'Budget'].map((item) => (
                 <a
-                  className="glass-control rounded-lg border border-white/70 px-3 py-2 text-center text-sm font-semibold text-slate-700 dark:border-white/10 dark:text-slate-200"
+                  className="glass-control rounded-lg border border-white/70 px-3 py-2 text-center text-sm font-semibold text-slate-700 dark:border-teal-300/15 dark:text-zinc-200"
                   href={`#${item.toLowerCase()}`}
                   key={item}
                 >
@@ -631,21 +635,23 @@ function App() {
             </section>
 
             <article
-              className="mt-6 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-slate-900"
+              className="mt-6 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm dark:border-teal-300/15 dark:bg-zinc-950/80"
               id="transactions"
             >
-              <div className="border-b border-slate-200 p-5 dark:border-white/10">
+              <div className="border-b border-slate-200 p-5 dark:border-teal-300/10">
                 <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
                   <div>
-                    <h2 className="text-lg font-semibold">Transactions</h2>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                    <h2 className="text-lg font-semibold dark:text-zinc-50">
+                      Transactions
+                    </h2>
+                    <p className="text-sm text-slate-500 dark:text-zinc-400">
                       {filteredTransactions.length} matching records from search
                       and filters
                     </p>
                   </div>
                   <div className="flex flex-col gap-3 sm:flex-row">
                     <select
-                      className="rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2 text-sm outline-none dark:border-white/10 dark:bg-slate-950/80"
+                      className="rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2 text-sm outline-none dark:border-teal-300/20 dark:bg-black/40 dark:text-zinc-100"
                       onChange={(event) =>
                         setTypeFilter(
                           event.target.value as 'all' | TransactionType,
@@ -658,7 +664,7 @@ function App() {
                       <option value="expense">Expense</option>
                     </select>
                     <select
-                      className="rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2 text-sm outline-none dark:border-white/10 dark:bg-slate-950/80"
+                      className="rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2 text-sm outline-none dark:border-teal-300/20 dark:bg-black/40 dark:text-zinc-100"
                       onChange={(event) => setCategoryFilter(event.target.value)}
                       value={categoryFilter}
                     >
@@ -673,7 +679,7 @@ function App() {
 
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[760px] text-left text-sm">
-                  <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500 dark:bg-slate-950 dark:text-slate-400">
+                  <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500 dark:bg-black/40 dark:text-teal-100/70">
                     <tr>
                       <th className="px-5 py-3">Transaction</th>
                       <th className="px-5 py-3">Category</th>
@@ -686,16 +692,16 @@ function App() {
                   <tbody className="divide-y divide-slate-100 dark:divide-white/10">
                     {filteredTransactions.map((transaction) => (
                       <tr
-                        className="transition hover:bg-slate-50 dark:hover:bg-white/5"
+                        className="transition hover:bg-slate-50 dark:hover:bg-teal-300/5"
                         key={transaction.id}
                       >
-                        <td className="px-5 py-4 font-medium text-slate-900 dark:text-white">
+                        <td className="px-5 py-4 font-medium text-slate-900 dark:text-zinc-100">
                           {transaction.title}
                         </td>
-                        <td className="px-5 py-4 text-slate-500 dark:text-slate-400">
+                        <td className="px-5 py-4 text-slate-500 dark:text-zinc-400">
                           {transaction.category}
                         </td>
-                        <td className="px-5 py-4 text-slate-500 dark:text-slate-400">
+                        <td className="px-5 py-4 text-slate-500 dark:text-zinc-400">
                           {formatDate(transaction.date)}
                         </td>
                         <td className="px-5 py-4">
@@ -712,8 +718,8 @@ function App() {
                         <td
                           className={`px-5 py-4 text-right font-semibold ${
                             transaction.type === 'income'
-                              ? 'text-emerald-600 dark:text-emerald-300'
-                              : 'text-slate-900 dark:text-white'
+                              ? 'text-emerald-600 dark:text-lime-200'
+                              : 'text-slate-900 dark:text-zinc-100'
                           }`}
                         >
                           {transaction.type === 'income' ? '+' : '-'}
@@ -744,7 +750,7 @@ function App() {
               {filteredTransactions.length === 0 && (
                 <div className="p-8 text-center">
                   <p className="font-semibold">No transactions found</p>
-                  <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                  <p className="mt-1 text-sm text-slate-500 dark:text-zinc-400">
                     Try another search or clear your filters.
                   </p>
                 </div>
@@ -755,8 +761,10 @@ function App() {
               <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-slate-900">
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <h2 className="text-lg font-semibold">Add transaction</h2>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                    <h2 className="text-lg font-semibold dark:text-zinc-50">
+                      Add transaction
+                    </h2>
+                    <p className="text-sm text-slate-500 dark:text-zinc-400">
                       Saved instantly to localStorage
                     </p>
                   </div>
@@ -767,11 +775,11 @@ function App() {
 
                 <form className="mt-5 space-y-4" onSubmit={handleSubmit}>
                   <div>
-                    <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                    <label className="text-sm font-medium text-slate-600 dark:text-zinc-300">
                       Title
                     </label>
                     <input
-                      className="mt-2 w-full rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2.5 text-sm outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 dark:border-white/10 dark:bg-slate-950/80"
+                      className="mt-2 w-full rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2.5 text-sm outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 dark:border-teal-300/20 dark:bg-black/40 dark:text-zinc-100"
                       onChange={(event) =>
                         setForm((current) => ({
                           ...current,
@@ -785,11 +793,11 @@ function App() {
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                      <label className="text-sm font-medium text-slate-600 dark:text-zinc-300">
                         Amount
                       </label>
                       <input
-                        className="mt-2 w-full rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2.5 text-sm outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 dark:border-white/10 dark:bg-slate-950/80"
+                        className="mt-2 w-full rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2.5 text-sm outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 dark:border-teal-300/20 dark:bg-black/40 dark:text-zinc-100"
                         min="0"
                         onChange={(event) =>
                           setForm((current) => ({
@@ -804,11 +812,11 @@ function App() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                      <label className="text-sm font-medium text-slate-600 dark:text-zinc-300">
                         Date
                       </label>
                       <input
-                        className="mt-2 w-full rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2.5 text-sm outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 dark:border-white/10 dark:bg-slate-950/80"
+                        className="mt-2 w-full rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2.5 text-sm outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 dark:border-teal-300/20 dark:bg-black/40 dark:text-zinc-100"
                         onChange={(event) =>
                           setForm((current) => ({
                             ...current,
@@ -823,17 +831,17 @@ function App() {
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                      <label className="text-sm font-medium text-slate-600 dark:text-zinc-300">
                         Type
                       </label>
-                      <div className="mt-2 grid grid-cols-2 rounded-lg border border-emerald-900/10 bg-emerald-50/60 p-1 dark:border-white/10 dark:bg-slate-950/80">
+                      <div className="mt-2 grid grid-cols-2 rounded-lg border border-emerald-900/10 bg-emerald-50/60 p-1 dark:border-teal-300/20 dark:bg-black/40">
                         {(['expense', 'income'] as TransactionType[]).map(
                           (type) => (
                             <button
                               className={`rounded-md px-3 py-2 text-sm font-semibold capitalize transition ${
                                 form.type === type
-                                  ? 'bg-white text-teal-800 shadow-sm dark:bg-slate-800 dark:text-teal-100'
-                                  : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
+                                  ? 'bg-white text-teal-800 shadow-sm dark:bg-teal-300/15 dark:text-teal-50'
+                                  : 'text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white'
                               }`}
                               key={type}
                               onClick={() => handleTypeChange(type)}
@@ -846,11 +854,11 @@ function App() {
                       </div>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                      <label className="text-sm font-medium text-slate-600 dark:text-zinc-300">
                         Category
                       </label>
                       <select
-                        className="mt-2 w-full rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2.5 text-sm outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 dark:border-white/10 dark:bg-slate-950/80"
+                        className="mt-2 w-full rounded-lg border border-emerald-900/10 bg-white/80 px-3 py-2.5 text-sm outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 dark:border-teal-300/20 dark:bg-black/40 dark:text-zinc-100"
                         onChange={(event) =>
                           setForm((current) => ({
                             ...current,
@@ -867,7 +875,7 @@ function App() {
                   </div>
 
                   <button
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-teal-600 to-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-teal-700/20 transition hover:-translate-y-0.5 hover:shadow-xl"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-teal-300 via-cyan-300 to-lime-300 px-4 py-3 text-sm font-bold text-zinc-950 shadow-lg shadow-teal-500/20 transition hover:-translate-y-0.5 hover:shadow-xl"
                     type="submit"
                   >
                     <Plus size={17} />
@@ -882,13 +890,15 @@ function App() {
               >
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div>
-                    <h2 className="text-lg font-semibold">Monthly budget</h2>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                    <h2 className="text-lg font-semibold dark:text-zinc-50">
+                      Monthly budget
+                    </h2>
+                    <p className="text-sm text-slate-500 dark:text-zinc-400">
                       {formatCurrency(currentMonthExpense)} of{' '}
                       {formatCurrency(monthlyBudget)} used this month
                     </p>
                   </div>
-                  <label className="flex items-center gap-2 rounded-lg border border-emerald-900/10 bg-emerald-50/60 px-3 py-2 text-sm font-medium text-slate-700 dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-300">
+                  <label className="flex items-center gap-2 rounded-lg border border-emerald-900/10 bg-emerald-50/60 px-3 py-2 text-sm font-medium text-slate-700 dark:border-teal-300/20 dark:bg-black/40 dark:text-zinc-300">
                     Budget
                     <input
                       className="w-24 bg-transparent text-right font-semibold text-slate-950 outline-none dark:text-white"
@@ -905,7 +915,7 @@ function App() {
 
                 <div className="mt-8">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="font-medium text-slate-600 dark:text-slate-300">
+                    <span className="font-medium text-slate-600 dark:text-zinc-300">
                       Budget progress
                     </span>
                     <span className="font-semibold">{budgetProgress}%</span>
@@ -917,22 +927,22 @@ function App() {
                           ? 'bg-red-500'
                           : budgetProgress > 70
                             ? 'bg-orange-500'
-                            : 'bg-teal-600'
+                            : 'bg-teal-300'
                       }`}
                       style={{ width: `${budgetProgress}%` }}
                     />
                   </div>
                   <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                    <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-slate-950/80">
-                      <p className="text-sm text-slate-500 dark:text-slate-400">
+                    <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-black/35">
+                      <p className="text-sm text-slate-500 dark:text-zinc-400">
                         Remaining
                       </p>
                       <p className="mt-1 text-lg font-semibold">
                         {formatCurrency(budgetRemaining)}
                       </p>
                     </div>
-                    <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-slate-950/80">
-                      <p className="text-sm text-slate-500 dark:text-slate-400">
+                    <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-black/35">
+                      <p className="text-sm text-slate-500 dark:text-zinc-400">
                         Avg. transaction
                       </p>
                       <p className="mt-1 text-lg font-semibold">
@@ -944,8 +954,8 @@ function App() {
                         )}
                       </p>
                     </div>
-                    <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-slate-950/80">
-                      <p className="text-sm text-slate-500 dark:text-slate-400">
+                    <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-black/35">
+                      <p className="text-sm text-slate-500 dark:text-zinc-400">
                         Status
                       </p>
                       <p className="mt-1 text-lg font-semibold">
@@ -968,8 +978,10 @@ function App() {
               <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-slate-900">
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <h2 className="text-lg font-semibold">Income vs expense</h2>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                    <h2 className="text-lg font-semibold dark:text-zinc-50">
+                      Income vs expense
+                    </h2>
+                    <p className="text-sm text-slate-500 dark:text-zinc-400">
                       Last six active months
                     </p>
                   </div>
@@ -1018,8 +1030,10 @@ function App() {
               </article>
 
               <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-slate-900">
-                <h2 className="text-lg font-semibold">Expense categories</h2>
-                <p className="text-sm text-slate-500 dark:text-slate-400">
+                <h2 className="text-lg font-semibold dark:text-zinc-50">
+                  Expense categories
+                </h2>
+                <p className="text-sm text-slate-500 dark:text-zinc-400">
                   Where money is going
                 </p>
                 <div className="mt-6 grid gap-5 md:grid-cols-[1fr_0.8fr] 2xl:grid-cols-1">
@@ -1047,7 +1061,7 @@ function App() {
                         className="flex items-center justify-between gap-3 text-sm"
                         key={category.name}
                       >
-                        <span className="flex min-w-0 items-center gap-2 text-slate-600 dark:text-slate-300">
+                        <span className="flex min-w-0 items-center gap-2 text-slate-600 dark:text-zinc-300">
                           <span
                             className="size-2.5 shrink-0 rounded-full"
                             style={{ background: category.color }}
@@ -1068,8 +1082,10 @@ function App() {
               <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-slate-900">
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <h2 className="text-lg font-semibold">Monthly spending</h2>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                    <h2 className="text-lg font-semibold dark:text-zinc-50">
+                      Monthly spending
+                    </h2>
+                    <p className="text-sm text-slate-500 dark:text-zinc-400">
                       Expense trend over time
                     </p>
                   </div>
@@ -1108,15 +1124,73 @@ function App() {
               </article>
             </section>
 
-            <footer className="mt-8 flex flex-col gap-3 border-t border-slate-200 py-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between dark:border-white/10 dark:text-slate-400">
-              <p>MoneyMate saves transactions and settings locally in your browser.</p>
-              <button
-                className="glass-control inline-flex w-fit items-center gap-2 rounded-lg border border-white/70 px-3 py-2 font-semibold text-slate-700 transition hover:-translate-y-0.5 dark:border-white/10 dark:text-white"
-                onClick={resetDemoData}
-                type="button"
-              >
-                Reset demo data
-              </button>
+            <footer className="footer-grid mt-8 rounded-lg border border-slate-200 p-5 text-sm text-slate-500 sm:p-6 dark:border-teal-300/15 dark:text-zinc-400">
+              <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
+                <div>
+                  <div className="flex items-center gap-3">
+                    <div className="grid size-10 place-items-center rounded-lg bg-gradient-to-br from-teal-300 to-lime-300 text-zinc-950">
+                      <Wallet size={20} />
+                    </div>
+                    <div>
+                      <p className="font-['Space_Grotesk'] text-lg font-bold text-slate-900 dark:text-zinc-50">
+                        MoneyMate
+                      </p>
+                      <p className="text-xs uppercase tracking-[0.22em] text-teal-700 dark:text-teal-200">
+                        Local-first finance OS
+                      </p>
+                    </div>
+                  </div>
+                  <p className="mt-4 max-w-xl leading-6">
+                    A dark, responsive portfolio dashboard for tracking freelance
+                    cash flow, expenses, budgets, and spending patterns. All data
+                    stays in your browser with localStorage.
+                  </p>
+                </div>
+
+                <div>
+                  <p className="font-semibold text-slate-900 dark:text-zinc-50">
+                    Sections
+                  </p>
+                  <div className="mt-3 grid gap-2">
+                    {['Dashboard', 'Transactions', 'Insights', 'Budget'].map(
+                      (item) => (
+                        <a
+                          className="transition hover:text-teal-700 dark:hover:text-teal-200"
+                          href={`#${item.toLowerCase()}`}
+                          key={item}
+                        >
+                          {item}
+                        </a>
+                      ),
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="font-semibold text-slate-900 dark:text-zinc-50">
+                    Project
+                  </p>
+                  <div className="mt-3 grid gap-2">
+                    <span>React + Vite</span>
+                    <span>Tailwind CSS</span>
+                    <span>Recharts</span>
+                    <span>No backend</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 flex flex-col gap-3 border-t border-slate-200 pt-5 sm:flex-row sm:items-center sm:justify-between dark:border-teal-300/10">
+                <p>
+                  © 2026 MoneyMate. Built for a clean freelancer portfolio.
+                </p>
+                <button
+                  className="glass-control inline-flex w-fit items-center gap-2 rounded-lg border border-white/70 px-3 py-2 font-semibold text-slate-700 transition hover:-translate-y-0.5 dark:border-teal-300/15 dark:text-teal-50"
+                  onClick={resetDemoData}
+                  type="button"
+                >
+                  Reset demo data
+                </button>
+              </div>
             </footer>
           </section>
         </div>
