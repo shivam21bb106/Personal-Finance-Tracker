@@ -484,12 +484,22 @@ function App() {
     })
   }
 
-  const resetDemoData = () => {
-    setTransactions(sampleTransactions)
-    setMonthlyBudget(5000)
+  const resetViewState = () => {
     setSearch('')
     setTypeFilter('all')
     setCategoryFilter('all')
+  }
+
+  const clearAllData = () => {
+    setTransactions([])
+    setMonthlyBudget(0)
+    resetViewState()
+  }
+
+  const loadDemoData = () => {
+    setTransactions(sampleTransactions)
+    setMonthlyBudget(5000)
+    resetViewState()
   }
 
   return (
@@ -1247,15 +1257,24 @@ function App() {
 
               <div className="mt-6 flex flex-col gap-3 border-t border-slate-200 pt-5 sm:flex-row sm:items-center sm:justify-between dark:border-teal-300/10">
                 <p>
-                  © 2026 MoneyMate. Built for a clean freelancer portfolio.
+                  (c) 2026 MoneyMate. Built for a clean freelancer portfolio.
                 </p>
-                <button
-                  className="glass-control inline-flex w-fit items-center gap-2 rounded-lg border border-white/70 px-3 py-2 font-semibold text-slate-700 transition hover:-translate-y-0.5 dark:border-teal-300/15 dark:text-teal-50"
-                  onClick={resetDemoData}
-                  type="button"
-                >
-                  Reset demo data
-                </button>
+                <div className="flex flex-col gap-2 sm:flex-row">
+                  <button
+                    className="inline-flex w-fit items-center gap-2 rounded-lg border border-red-300/40 bg-red-500/10 px-3 py-2 font-semibold text-red-700 transition hover:-translate-y-0.5 hover:bg-red-500/15 dark:border-red-300/20 dark:text-red-200"
+                    onClick={clearAllData}
+                    type="button"
+                  >
+                    Clear all data
+                  </button>
+                  <button
+                    className="glass-control inline-flex w-fit items-center gap-2 rounded-lg border border-white/70 px-3 py-2 font-semibold text-slate-700 transition hover:-translate-y-0.5 dark:border-teal-300/15 dark:text-teal-50"
+                    onClick={loadDemoData}
+                    type="button"
+                  >
+                    Load demo data
+                  </button>
+                </div>
               </div>
             </footer>
           </section>
