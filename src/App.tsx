@@ -65,7 +65,7 @@ const STORAGE_KEYS = {
   settings: 'moneymate.settings',
 }
 
-const DESIGN_VERSION = 'dark-gen-2'
+const DESIGN_VERSION = 'dark-gen-3'
 
 const incomeCategories = [
   'Client Work',
