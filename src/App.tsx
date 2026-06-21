@@ -54,10 +54,18 @@ type TransactionForm = {
   date: string
 }
 
+type Settings = {
+  theme: Theme
+  monthlyBudget: number
+  designVersion: string
+}
+
 const STORAGE_KEYS = {
   transactions: 'moneymate.transactions',
   settings: 'moneymate.settings',
 }
+
+const DESIGN_VERSION = 'dark-gen-1'
 
 const incomeCategories = [
   'Client Work',
@@ -81,15 +89,15 @@ const expenseCategories = [
 ]
 
 const categoryColors = [
-  '#2563eb',
-  '#0f766e',
+  '#2dd4bf',
+  '#a3e635',
+  '#38bdf8',
   '#f97316',
-  '#16a34a',
-  '#dc2626',
-  '#0891b2',
-  '#ca8a04',
-  '#4f46e5',
-  '#64748b',
+  '#f43f5e',
+  '#22c55e',
+  '#eab308',
+  '#06b6d4',
+  '#94a3b8',
 ]
 
 const sampleTransactions: Transaction[] = [
@@ -236,8 +244,12 @@ const readTransactions = () => {
   }
 }
 
-const readSettings = () => {
-  const fallback = { theme: 'light' as Theme, monthlyBudget: 5000 }
+const readSettings = (): Settings => {
+  const fallback: Settings = {
+    theme: 'dark' as Theme,
+    monthlyBudget: 5000,
+    designVersion: DESIGN_VERSION,
+  }
   const stored = localStorage.getItem(STORAGE_KEYS.settings)
 
   if (!stored) {
@@ -245,7 +257,10 @@ const readSettings = () => {
   }
 
   try {
-    return { ...fallback, ...JSON.parse(stored) } as typeof fallback
+    const parsed = { ...fallback, ...JSON.parse(stored) } as Settings
+    return parsed.designVersion === DESIGN_VERSION
+      ? parsed
+      : { ...parsed, theme: 'dark' as Theme, designVersion: DESIGN_VERSION }
   } catch {
     return fallback
   }
@@ -265,12 +280,12 @@ const StatCard = ({
   tone: 'blue' | 'green' | 'orange' | 'teal'
 }) => {
   const toneClasses = {
-    blue: 'bg-teal-50 text-teal-800 ring-teal-100 dark:bg-teal-500/12 dark:text-teal-200 dark:ring-teal-400/20',
+    blue: 'bg-teal-50 text-teal-800 ring-teal-100 dark:bg-teal-300/12 dark:text-teal-100 dark:ring-teal-300/25',
     green:
-      'bg-emerald-50 text-emerald-700 ring-emerald-100 dark:bg-emerald-500/12 dark:text-emerald-300 dark:ring-emerald-400/20',
+      'bg-emerald-50 text-emerald-700 ring-emerald-100 dark:bg-lime-300/12 dark:text-lime-100 dark:ring-lime-300/25',
     orange:
-      'bg-orange-50 text-orange-700 ring-orange-100 dark:bg-orange-500/12 dark:text-orange-300 dark:ring-orange-400/20',
-    teal: 'bg-cyan-50 text-cyan-700 ring-cyan-100 dark:bg-cyan-500/12 dark:text-cyan-300 dark:ring-cyan-400/20',
+      'bg-orange-50 text-orange-700 ring-orange-100 dark:bg-orange-400/12 dark:text-orange-200 dark:ring-orange-300/20',
+    teal: 'bg-cyan-50 text-cyan-700 ring-cyan-100 dark:bg-cyan-300/12 dark:text-cyan-100 dark:ring-cyan-300/25',
   }
 
   return (
@@ -294,7 +309,7 @@ const StatCard = ({
 }
 
 function App() {
-  const [settings] = useState(readSettings)
+  const [settings] = useState<Settings>(() => readSettings())
   const [transactions, setTransactions] = useState<Transaction[]>(readTransactions)
   const [theme, setTheme] = useState<Theme>(settings.theme)
   const [monthlyBudget, setMonthlyBudget] = useState(settings.monthlyBudget)
@@ -310,7 +325,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem(
       STORAGE_KEYS.settings,
-      JSON.stringify({ theme, monthlyBudget }),
+      JSON.stringify({ theme, monthlyBudget, designVersion: DESIGN_VERSION }),
     )
   }, [theme, monthlyBudget])
 
@@ -505,8 +520,8 @@ function App() {
                 <a
                   className={`flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition ${
                     index === 0
-                      ? 'bg-teal-50 text-teal-800 shadow-sm dark:bg-teal-500/15 dark:text-teal-100'
-                      : 'text-slate-600 hover:bg-teal-50/80 hover:text-teal-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white'
+                      ? 'bg-teal-50 text-teal-800 shadow-sm dark:bg-teal-300/15 dark:text-teal-50 dark:shadow-teal-950/30'
+                      : 'text-slate-600 hover:bg-teal-50/80 hover:text-teal-900 dark:text-zinc-400 dark:hover:bg-teal-300/10 dark:hover:text-teal-50'
                   }`}
                   href={`#${String(label).toLowerCase()}`}
                   key={label as string}
@@ -564,7 +579,7 @@ function App() {
                   type="button"
                 >
                   {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
-                  {theme === 'dark' ? 'Light' : 'Dark'}
+                  {theme === 'dark' ? 'Light mode' : 'Dark mode'}
                 </button>
               </div>
             </header>
@@ -987,13 +1002,13 @@ function App() {
                       />
                       <Bar
                         dataKey="income"
-                        fill="#2563eb"
+                        fill="#2dd4bf"
                         name="Income"
                         radius={[6, 6, 0, 0]}
                       />
                       <Bar
                         dataKey="expenses"
-                        fill="#0f766e"
+                        fill="#a3e635"
                         name="Expenses"
                         radius={[6, 6, 0, 0]}
                       />
@@ -1081,9 +1096,9 @@ function App() {
                       <Tooltip formatter={(value) => formatCurrency(Number(value))} />
                       <Line
                         dataKey="expenses"
-                        dot={{ fill: '#2563eb', r: 4 }}
+                        dot={{ fill: '#2dd4bf', r: 4 }}
                         name="Expenses"
-                        stroke="#2563eb"
+                        stroke="#2dd4bf"
                         strokeWidth={3}
                         type="monotone"
                       />

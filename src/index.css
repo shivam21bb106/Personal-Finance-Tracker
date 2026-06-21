@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap");
 @import "tailwindcss";
 
 :root {
-  color: #111827;
-  background: #f4f8f6;
+  color: #ecfdf5;
+  background: #050605;
   font-family:
     "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -56,22 +56,42 @@ select {
 }
 
 ::selection {
-  background: #0f766e;
-  color: #ffffff;
+  background: #2dd4bf;
+  color: #04110f;
 }
 
 .app-canvas {
+  position: relative;
   background:
-    linear-gradient(135deg, rgba(15, 118, 110, 0.12), transparent 30%),
-    linear-gradient(225deg, rgba(37, 99, 235, 0.1), transparent 34%),
+    radial-gradient(circle at 20% 4%, rgba(45, 212, 191, 0.2), transparent 28%),
+    radial-gradient(circle at 88% 8%, rgba(163, 230, 53, 0.12), transparent 26%),
     linear-gradient(180deg, #f8fbf8 0%, #edf6f5 44%, #f7faf9 100%);
 }
 
 .dark .app-canvas {
   background:
-    linear-gradient(135deg, rgba(20, 184, 166, 0.14), transparent 32%),
-    linear-gradient(225deg, rgba(37, 99, 235, 0.14), transparent 34%),
-    linear-gradient(180deg, #08130f 0%, #0e1b17 48%, #101614 100%);
+    radial-gradient(circle at 18% 0%, rgba(45, 212, 191, 0.22), transparent 26%),
+    radial-gradient(circle at 84% 12%, rgba(163, 230, 53, 0.13), transparent 24%),
+    radial-gradient(circle at 62% 100%, rgba(34, 211, 238, 0.1), transparent 28%),
+    linear-gradient(180deg, #050605 0%, #07110f 44%, #030404 100%);
+}
+
+.app-canvas::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(45, 212, 191, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 212, 191, 0.04) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 75%);
+}
+
+h1,
+h2 {
+  font-family:
+    "Space Grotesk", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
 .hero-panel {
@@ -88,13 +108,23 @@ select {
 }
 
 .dark .hero-panel {
-  border-color: rgba(45, 212, 191, 0.16);
+  border-color: rgba(45, 212, 191, 0.28);
   background:
-    linear-gradient(135deg, rgba(18, 34, 30, 0.96), rgba(10, 24, 22, 0.9)),
-    linear-gradient(90deg, rgba(20, 184, 166, 0.1), rgba(96, 165, 250, 0.08));
+    radial-gradient(circle at 86% 12%, rgba(163, 230, 53, 0.16), transparent 26%),
+    radial-gradient(circle at 14% 8%, rgba(45, 212, 191, 0.18), transparent 34%),
+    linear-gradient(135deg, rgba(12, 22, 20, 0.96), rgba(3, 8, 7, 0.92));
   box-shadow:
-    0 22px 60px rgba(0, 0, 0, 0.28),
+    0 24px 80px rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(45, 212, 191, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.dark .hero-panel::after {
+  content: "";
+  position: absolute;
+  inset: auto 24px 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(45, 212, 191, 0.8), transparent);
 }
 
 .sidebar-shell {
@@ -105,8 +135,10 @@ select {
 
 .dark .sidebar-shell {
   background:
-    linear-gradient(180deg, rgba(8, 19, 15, 0.96), rgba(15, 23, 20, 0.94));
-  box-shadow: 16px 0 50px rgba(0, 0, 0, 0.24);
+    linear-gradient(180deg, rgba(4, 8, 7, 0.96), rgba(7, 17, 15, 0.94));
+  box-shadow:
+    18px 0 60px rgba(0, 0, 0, 0.34),
+    inset -1px 0 rgba(45, 212, 191, 0.12);
 }
 
 .glass-control {
@@ -118,9 +150,10 @@ select {
 }
 
 .dark .glass-control {
-  background: rgba(15, 27, 24, 0.78);
+  background: rgba(9, 18, 16, 0.74);
   box-shadow:
-    0 12px 32px rgba(0, 0, 0, 0.24),
+    0 16px 42px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(45, 212, 191, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
@@ -138,16 +171,17 @@ main article.rounded-lg {
 }
 
 .dark main article.rounded-lg {
-  border-color: rgba(45, 212, 191, 0.12);
-  background-color: rgba(15, 27, 24, 0.86);
+  border-color: rgba(45, 212, 191, 0.18);
+  background-color: rgba(7, 16, 14, 0.88);
   background-image: linear-gradient(
     180deg,
-    rgba(18, 34, 30, 0.96),
-    rgba(10, 23, 20, 0.9)
+    rgba(13, 26, 23, 0.94),
+    rgba(5, 12, 11, 0.92)
   );
   box-shadow:
-    0 18px 45px rgba(0, 0, 0, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 22px 70px rgba(0, 0, 0, 0.32),
+    0 0 0 1px rgba(45, 212, 191, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
 main article.rounded-lg:hover {
@@ -155,5 +189,19 @@ main article.rounded-lg:hover {
 }
 
 .dark main article.rounded-lg:hover {
-  border-color: rgba(45, 212, 191, 0.22);
+  border-color: rgba(45, 212, 191, 0.36);
+  box-shadow:
+    0 26px 80px rgba(0, 0, 0, 0.4),
+    0 0 28px rgba(45, 212, 191, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.dark thead {
+  background: rgba(3, 8, 7, 0.7);
+}
+
+.dark input,
+.dark select {
+  background-color: rgba(3, 8, 7, 0.7);
+  border-color: rgba(45, 212, 191, 0.16);
 }
