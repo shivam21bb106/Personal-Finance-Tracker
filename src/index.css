@@ -20,10 +20,41 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root,
+main {
+  overflow-x: hidden;
+}
+
+main section,
+main article,
+main header {
+  min-width: 0;
 }
 
 button,
 input,
 select {
   font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+select {
+  color-scheme: light;
+}
+
+.dark input,
+.dark select {
+  color-scheme: dark;
+}
+
+::selection {
+  background: #2563eb;
+  color: #ffffff;
 }
