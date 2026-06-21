@@ -934,7 +934,7 @@ function App() {
                   </label>
                 </div>
 
-                <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_0.72fr]">
+                <div className="mt-8 grid gap-5 2xl:grid-cols-[1fr_0.72fr]">
                   <div>
                     <div className="flex items-center justify-between text-sm">
                       <span className="font-medium text-slate-600 dark:text-zinc-300">
@@ -954,7 +954,7 @@ function App() {
                         style={{ width: `${budgetProgress}%` }}
                       />
                     </div>
-                    <div className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 2xl:grid-cols-3">
+                    <div className="mt-6 grid gap-3 sm:grid-cols-3">
                       <div className="rounded-lg bg-emerald-50/60 p-4 dark:bg-black/35">
                         <p className="text-sm text-slate-500 dark:text-zinc-400">
                           Remaining
@@ -1006,7 +1006,7 @@ function App() {
                         style={{ width: `${budgetProgress}%` }}
                       />
                     </div>
-                    <div className="mt-5 grid gap-4 text-sm">
+                    <div className="mt-5 grid gap-4 text-sm sm:grid-cols-[1fr_1.25fr] sm:items-end 2xl:grid-cols-1">
                       <div>
                         <p className="text-slate-500 dark:text-zinc-400">
                           Spent this month
